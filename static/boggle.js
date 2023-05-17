@@ -42,9 +42,14 @@ class BoggleGame {
     evt.preventDefault();
     const $word = $(".word", this.board);
 
-    let word = $word.val();
+    let word = $word.val().toLowerCase();; //CHANGE TO LOWERCASE-caseinsensive
     if (!word) return;
 
+
+    if (word.length < 2) {
+      this.showMessage(`Word must be at least 2 characters long`, "err");
+      return;
+    }
     if (this.words.has(word)) {
       this.showMessage(`Already found ${word}`, "err");
       return;
@@ -63,7 +68,7 @@ class BoggleGame {
       this.words.add(word);
       this.showMessage(`Added: ${word}`, "ok");
     }
-
+///FIX ERROR HANDLING
     $word.val("").focus();
   }
 
